@@ -1,5 +1,4 @@
 import ProductList from "@/components/ProductList";
-import { promises } from "dns";
 import Image from "next/image";
 
 const Homepage = async ({
