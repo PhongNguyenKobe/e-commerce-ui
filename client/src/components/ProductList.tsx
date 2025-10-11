@@ -1,9 +1,10 @@
 import { ProductsType } from "@/types";
 import Categories from "./Categories";
 import ProductCard from "./ProductCard";
+import Link from "next/link";
 
 //temporary
-const products:ProductsType = [
+const products: ProductsType = [
   {
     id: 1,
     name: "Áo thun Adidas CoreFit",
@@ -12,11 +13,11 @@ const products:ProductsType = [
       "Áo thun Adidas CoreFit với chất liệu co giãn, thấm hút mồ hôi tốt. Thiết kế đơn giản, dễ phối đồ, phù hợp với mọi hoạt động thường ngày.",
     price: 399000,
     sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["xám", "tím", "xanh lá"],
+    colors: ["gray", "purple", "green"],
     images: {
-      xám: "/products/1g.png",
-      tím: "/products/1p.png",
-      "xanh lá": "/products/1gr.png",
+      gray: "/products/1g.png",
+      purple: "/products/1p.png",
+      green: "/products/1gr.png",
     },
   },
   {
@@ -27,10 +28,10 @@ const products:ProductsType = [
       "Áo khoác Puma Ultra Warm Zip với lớp lót giữ nhiệt, khóa kéo tiện lợi. Phù hợp với thời tiết se lạnh ở miền Bắc và Đà Lạt.",
     price: 599000,
     sizes: ["S", "M", "L", "XL"],
-    colors: ["xám", "xanh lá"],
+    colors: ["gray", "green"],
     images: {
-      xám: "/products/2g.png",
-      "xanh lá": "/products/2gr.png",
+      gray: "/products/2g.png",
+      green: "/products/2gr.png",
     },
   },
   {
@@ -41,11 +42,11 @@ const products:ProductsType = [
       "Nike Air Essentials Pullover là lựa chọn lý tưởng cho mùa đông. Chất liệu dày dặn, form rộng thoải mái, phù hợp với giới trẻ Việt.",
     price: 699000,
     sizes: ["S", "M", "L"],
-    colors: ["xanh lá", "xanh dương", "đen"],
+    colors: ["green", "blue", "black"],
     images: {
-      "xanh lá": "/products/3gr.png",
-      "xanh dương": "/products/3b.png",
-      đen: "/products/3bl.png",
+      green: "/products/3gr.png",
+      blue: "/products/3b.png",
+      black: "/products/3bl.png",
     },
   },
   {
@@ -56,10 +57,10 @@ const products:ProductsType = [
       "Nike Dri-Flex T-Shirt giúp bạn thoải mái khi vận động. Thiết kế đơn giản, màu sắc trẻ trung, phù hợp với học sinh, sinh viên.",
     price: 299000,
     sizes: ["S", "M", "L"],
-    colors: ["trắng", "hồng"],
+    colors: ["white", "pink"],
     images: {
-      trắng: "/products/4w.png",
-      hồng: "/products/4p.png",
+      white: "/products/4w.png",
+      pink: "/products/4p.png",
     },
   },
   {
@@ -70,11 +71,11 @@ const products:ProductsType = [
       "StormFleece là dòng áo khoác cao cấp của Under Armour, phù hợp với thời tiết lạnh ở miền núi hoặc đi phượt.",
     price: 499000,
     sizes: ["S", "M", "L"],
-    colors: ["đỏ", "cam", "đen"],
+    colors: ["red", "orange", "black"],
     images: {
-      đỏ: "/products/5r.png",
-      cam: "/products/5o.png",
-      đen: "/products/5bl.png",
+      red: "/products/5r.png",
+      orange: "/products/5o.png",
+      black: "/products/5bl.png",
     },
   },
   {
@@ -85,10 +86,10 @@ const products:ProductsType = [
       "Nike Air Max 270 với đệm khí êm ái, phù hợp đi học, đi chơi hoặc chạy bộ. Thiết kế trẻ trung, dễ phối đồ.",
     price: 599000,
     sizes: ["38", "39", "40", "42", "43"],
-    colors: ["xám", "trắng"],
+    colors: ["gray", "white"],
     images: {
-      xám: "/products/6g.png",
-      trắng: "/products/6w.png",
+      gray: "/products/6g.png",
+      white: "/products/6w.png",
     },
   },
   {
@@ -99,10 +100,10 @@ const products:ProductsType = [
       "Nike Ultraboost Pulse là dòng giày chuyên dụng cho chạy bộ, tập gym. Thiết kế ôm chân, đế cao su chống trượt.",
     price: 699000,
     sizes: ["39", "40", "42"],
-    colors: ["xám", "hồng"],
+    colors: ["gray", "pink"],
     images: {
-      xám: "/products/7g.png",
-      hồng: "/products/7p.png",
+      gray: "/products/7g.png",
+      pink: "/products/7p.png",
     },
   },
   {
@@ -113,15 +114,15 @@ const products:ProductsType = [
       "Levi’s Classic Denim là mẫu quần jean phù hợp với mọi lứa tuổi. Form đứng, chất vải dày, không phai màu sau nhiều lần giặt.",
     price: 599000,
     sizes: ["S", "M", "L"],
-    colors: ["xanh dương", "xanh lá"],
+    colors: ["blue", "green"],
     images: {
-      "xanh dương": "/products/8b.png",
-      "xanh lá": "/products/8gr.png",
+      blue: "/products/8b.png",
+      green: "/products/8gr.png",
     },
   },
 ];
 
-const ProductList = () => {
+const ProductList = ({category}: {category: string}) => {
   return (
     <div className='w-full'>
         <Categories />
@@ -130,6 +131,8 @@ const ProductList = () => {
                 <ProductCard key={product.id} product={product} />
             ))}
         </div>
+        <Link href={category ? `/products/?category=${category}` : "/products"}
+        className="flex justify-end mt-4 underline text-sm text-gray-500">Xem thêm sản phẩm</Link>
     </div>
   )
 }
