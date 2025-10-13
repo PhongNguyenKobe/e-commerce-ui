@@ -49,7 +49,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
             <select
               name="size"
               id="size"
-              className="ring ring-gray-300 rounded-md px-2 py-1"
+              className="ring ring-gray-300 rounded-md px-2 py-0.5"
               onChange={(e) =>
                 handleTypeChange({ type: "size", value: e.target.value })
               }
@@ -84,7 +84,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         </div>
         {/* price and add to cart */}
         <div className="flex items-center justify-between">
-          <p className="font-medium">{product.price.toLocaleString()} đ</p>
+          <p className="font-medium">{product.price.toLocaleString('vi-VN')} đ</p>
           <button className="ring-1 ring-gray-100 shadow-lg rounded-md py-2 px-1 text-sm cursor-pointer hover:text-white hover:bg-black transition-all duration-300 flex items-center gap-2">
             <ShoppingCart className="w-4 h-4" />
             Thêm vào giỏ hàng
