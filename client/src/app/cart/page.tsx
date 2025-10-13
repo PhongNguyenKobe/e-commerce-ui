@@ -1,0 +1,111 @@
+"use client";
+
+import { CartItemsType } from "@/types";
+import { useRouter, useSearchParams } from "next/navigation";
+import { parse } from "path";
+
+const steps = [
+  { id: 1, title: "Giỏ hàng" },
+  { id: 2, title: "Địa chỉ giao hàng" },
+  { id: 3, title: "Thanh toán" },
+];
+//temporary
+const cartItems: CartItemsType = [
+  {
+    id: 1,
+    name: "Áo thun Adidas CoreFit",
+    shortDescription:
+      "Áo thun thể thao thoáng khí, phù hợp tập luyện và mặc hàng ngày.",
+    description:
+      "Áo thun Adidas CoreFit với chất liệu co giãn, thấm hút mồ hôi tốt. Thiết kế đơn giản, dễ phối đồ, phù hợp với mọi hoạt động thường ngày.",
+    price: 399000,
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["gray", "purple", "green"],
+    images: {
+      gray: "/products/1g.png",
+      purple: "/products/1p.png",
+      green: "/products/1gr.png",
+    },
+    quantity: 1,
+    selectedSize: "M",
+    selectedColor: "gray",
+  },
+  {
+    id: 2,
+    name: "Áo khoác Puma Ultra Warm Zip",
+    shortDescription: "Áo khoác giữ ấm, thiết kế thể thao năng động.",
+    description:
+      "Áo khoác Puma Ultra Warm Zip với lớp lót giữ nhiệt, khóa kéo tiện lợi. Phù hợp với thời tiết se lạnh ở miền Bắc và Đà Lạt.",
+    price: 599000,
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["gray", "green"],
+    images: {
+      gray: "/products/2g.png",
+      green: "/products/2gr.png",
+    },
+    quantity: 2,
+    selectedSize: "L",
+    selectedColor: "green",
+  },
+  {
+    id: 3,
+    name: "Áo hoodie Nike Air Essentials",
+    shortDescription: "Áo hoodie phong cách trẻ trung, giữ ấm tốt.",
+    description:
+      "Nike Air Essentials Pullover là lựa chọn lý tưởng cho mùa đông. Chất liệu dày dặn, form rộng thoải mái, phù hợp với giới trẻ Việt.",
+    price: 699000,
+    sizes: ["S", "M", "L"],
+    colors: ["green", "blue", "black"],
+    images: {
+      green: "/products/3gr.png",
+      blue: "/products/3b.png",
+      black: "/products/3bl.png",
+    },
+    quantity: 1,
+    selectedSize: "S",
+    selectedColor: "blue",
+  },
+];
+
+const CartPage = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const active = parseInt(searchParams.get("step") || "1");
+  return (
+    <div className="flex flex-col gap-8 items-center justify-center mt-12">
+      {/* Title */}
+      <h1 className="text-2xl font-medium">Giỏ hàng của bạn</h1>
+      {/* steps */}
+      <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+        {steps.map((step) => (
+          <div
+            className={`flex items-center gap-2 border-b-2 pb-4 ${
+              step.id === active ? "border-gray-800" : "border-gray-200"
+            }`}
+            key={step.id}
+          >
+            <div
+              className={`w-6 h-6 rounded-full text-white p-4 flex items-center justify-center ${
+                step.id === active ? "bg-gray-800" : "bg-gray-400"
+              }`}
+            >
+              {step.id}
+            </div>
+            <p
+              className={`text-sm font-medium ${
+                step.id === active ? "text-gray-800" : "text-gray-400"
+              }`}
+            >
+              {step.title}
+            </p>
+          </div>
+        ))}
+      </div>
+      {/* step and details */}
+      
+    </div>
+  );
+};
+
+export default CartPage;
