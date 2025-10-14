@@ -15,7 +15,7 @@ const Footer = () => {
         <p className="text-sm text-gray-400">All rights reserved</p>
       </div>
       <div className="flex flex-col gap-4 text-sm text-gray-400 items-center md:items-start">
-        <p className="text-sm text-amber-50">Links</p>
+        <p className="text-sm text-amber-50">Thông tin</p>
         <Link href="/">Trang chủ</Link>
         <Link href="/contact">Liên hệ</Link>
         <Link href="/privacy">Chính sách bảo mật</Link>
@@ -23,19 +23,19 @@ const Footer = () => {
       </div>
 
       <div className="flex flex-col gap-4 text-sm text-gray-400 items-center md:items-start">
-        <p className="text-sm text-amber-50">Links</p>
+        <p className="text-sm text-amber-50">Sản phẩm</p>
         <Link href="/">Tất cả sản phẩm</Link>
         <Link href="/new-arrivals">Sản phẩm mới</Link>
-        <Link href="/new-arrivals">Best Sellers</Link>
+        <Link href="/new-arrivals">Bán chạy nhất</Link>
         <Link href="/deals">Khuyến mãi</Link>
       </div>
 
       <div className="flex flex-col gap-4 text-sm text-gray-400 items-center md:items-start">
-        <p className="text-sm text-amber-50">Links</p>
-        <Link href="/faq">Câu hỏi thường gặp</Link>
-        <Link href="/support">Hỗ trợ</Link>
-        <Link href="/shipping">Vận chuyển</Link>
-        <Link href="/returns">Trả hàng & Hoàn tiền</Link>
+        <p className="text-sm text-amber-50">Công ty</p>
+        <Link href="/faq">Giới thiệu</Link>
+        <Link href="/support">Tuyển dụng</Link>
+        <Link href="/shipping">Đối tác</Link>
+        <Link href="/returns">Tin tức & Blog</Link>
       </div>
     </div>
   );
