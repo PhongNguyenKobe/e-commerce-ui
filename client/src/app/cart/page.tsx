@@ -1,8 +1,12 @@
 "use client";
 
+import PaymentForm from "@/components/PaymentForm";
+import ShippingForm from "@/components/ShippingForm";
 import { CartItemsType } from "@/types";
+import { ArrowRight, Trash2 } from "lucide-react";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { parse } from "path";
+import { useState } from "react";
 
 const steps = [
   { id: 1, title: "Giỏ hàng" },
@@ -70,8 +74,9 @@ const cartItems: CartItemsType = [
 const CartPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [shippingForm, setShippingForm] = useState(null);
 
-  const active = parseInt(searchParams.get("step") || "1");
+  const activeStep = parseInt(searchParams.get("step") || "1");
   return (
     <div className="flex flex-col gap-8 items-center justify-center mt-12">
       {/* Title */}
@@ -81,20 +86,20 @@ const CartPage = () => {
         {steps.map((step) => (
           <div
             className={`flex items-center gap-2 border-b-2 pb-4 ${
-              step.id === active ? "border-gray-800" : "border-gray-200"
+              step.id === activeStep ? "border-gray-800" : "border-gray-200"
             }`}
             key={step.id}
           >
             <div
               className={`w-6 h-6 rounded-full text-white p-4 flex items-center justify-center ${
-                step.id === active ? "bg-gray-800" : "bg-gray-400"
+                step.id === activeStep ? "bg-gray-800" : "bg-gray-400"
               }`}
             >
               {step.id}
             </div>
             <p
               className={`text-sm font-medium ${
-                step.id === active ? "text-gray-800" : "text-gray-400"
+                step.id === activeStep ? "text-gray-800" : "text-gray-400"
               }`}
             >
               {step.title}
@@ -103,7 +108,101 @@ const CartPage = () => {
         ))}
       </div>
       {/* step and details */}
-      
+      <div className="w-full flex flex-col lg:flex-row gap-16">
+        {/* steps */}
+        <div className="w-full lg:w-7/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8">
+          {activeStep === 1 ? (
+            cartItems.map((item) => (
+              // singel cart item
+              <div className="flex items-center justify-between" key={item.id}>
+                {/* image and details */}
+                <div className="flex gap-8">
+                  {/* image */}
+                  <div className="relative w-32 h-32 bg-gray-50 rounded-lg overflow-hidden">
+                    <Image
+                      src={item.images[item.selectedColor]}
+                      alt={item.name}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  {/* item details */}
+                  <div className="flex flex-col justify-between">
+                    <div className="flex flex-col gap-1">
+                      <p className="text-sm font-medium">{item.name}</p>
+                      <p className="text-xs text-gray-500">Số lượng: {item.quantity}</p>
+                      <p className="text-xs text-gray-500">Size: {item.selectedSize}</p>
+                      <p className="text-xs text-gray-500">Màu sắc: {item.selectedColor}</p>
+                    </div>
+                    <p className="font-medium">
+                      {item.price.toLocaleString("vi-VN")} đ
+                    </p>
+                  </div>
+                </div>
+                {/* delete button */}
+                <button className=" w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-400 flex items-center justify-center cursor-pointer">
+                  <Trash2 className="w-3 h-3" />
+                </button>
+              </div>
+            ))
+          ) : activeStep === 2 ? (
+            <ShippingForm />
+          ) : (
+            activeStep === 3 &&
+            (shippingForm ? (
+              <PaymentForm />
+            ) : (
+              <p className="text-sm text-gray-500">
+                Vui lòng hoàn tất thông tin giao hàng
+              </p>
+            ))
+          )}
+        </div>
+        {/* details */}
+        <div className="w-full lg:w-5/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8 h-max">
+          <h2 className="font-semibold">Chi tiết đơn hàng</h2>
+          <div className="flex flex-col gap-4">
+            <div className="flex justify-between text-sm">
+              <p className=" text-gray-500">Tổng cộng:</p>
+              <p className="font-medium">
+                {cartItems
+                  .reduce((acc, item) => acc + item.price * item.quantity, 0)
+                  .toLocaleString("vi-VN")}{" "}
+                đ
+              </p>
+            </div>
+
+            <div className="flex justify-between text-sm">
+              <p className=" text-gray-500">Giảm giá (10%):</p>
+              <p className="font-medium">229.600 đ</p>
+            </div>
+
+            <div className="flex justify-between text-sm">
+              <p className=" text-gray-500">Phí vận chuyển:</p>
+              <p className="font-medium">30.000 đ</p>
+            </div>
+            <hr className="border-gray-200" />
+            <div className="flex justify-between">
+              <p className=" text-gray-800 font-semibold">Tổng thanh toán:</p>
+              <p className="font-medium">
+                {cartItems
+                  .reduce((acc, item) => acc + item.price * item.quantity, 0)
+                  .toLocaleString("vi-VN")}{" "}
+                đ{" "}
+              </p>
+            </div>
+          </div>
+          {activeStep === 1 && (
+            <button
+              onClick={() => router.push("/cart?step=2", { scroll: false })}
+              className="w-full bg-gray-700 hover:bg-gray-900 transition-all duration-300 text-white p-2 cursor-pointer rounded-lg flex items-center justify-center gap-2"
+            >
+              Tiến hành thanh toán{" "}
+              <ArrowRight className="w-3 h-3 relative top-[2px]" />
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
