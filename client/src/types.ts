@@ -32,3 +32,38 @@ export const shippingFormSchema = z.object({
 });
 
 export type ShippingFormInputs = z.infer<typeof shippingFormSchema>;
+
+// Schema thanh toán - Payment form schema
+export const paymentFormSchema = z.object({
+  paymentMethod: z.enum(["vnpay", "stripe"], {
+    message: "Vui lòng chọn phương thức thanh toán!",
+  }),
+  // VNPay fields
+  bankCode: z.string().optional(),
+  // Stripe fields (chỉ required khi chọn Stripe)
+  cardHolder: z.string().optional(),
+  cardNumber: z.string().optional(),
+  expirationDate: z.string().optional(),
+  cvv: z.string().optional(),
+}).refine(
+  (data) => {
+    if (data.paymentMethod === "stripe") {
+      return (
+        data.cardHolder &&
+        data.cardNumber &&
+        data.cardNumber.length === 16 &&
+        data.expirationDate &&
+        /^(0[1-9]|1[0-2])\/\d{2}$/.test(data.expirationDate) &&
+        data.cvv &&
+        data.cvv.length === 3
+      );
+    }
+    return true;
+  },
+  {
+    message: "Vui lòng điền đầy đủ thông tin thẻ!",
+    path: ["cardHolder"],
+  }
+);
+
+export type PaymentFormInputs = z.infer<typeof paymentFormSchema>;

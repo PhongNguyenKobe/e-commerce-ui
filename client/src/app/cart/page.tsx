@@ -6,7 +6,7 @@ import { CartItemsType } from "@/types";
 import { ArrowRight, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+// import { useState } from "react";
 
 const steps = [
   { id: 1, title: "Giỏ hàng" },
@@ -74,9 +74,15 @@ const cartItems: CartItemsType = [
 const CartPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [shippingForm, setShippingForm] = useState(null);
 
   const activeStep = parseInt(searchParams.get("step") || "1");
+  
+  // Tính tổng tiền
+  const totalAmount = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
   return (
     <div className="flex flex-col gap-8 items-center justify-center mt-12">
       {/* Title */}
@@ -147,16 +153,9 @@ const CartPage = () => {
             ))
           ) : activeStep === 2 ? (
             <ShippingForm />
-          ) : (
-            activeStep === 3 &&
-            (shippingForm ? (
-              <PaymentForm />
-            ) : (
-              <p className="text-sm text-gray-500">
-                Vui lòng hoàn tất thông tin giao hàng
-              </p>
-            ))
-          )}
+          ) : activeStep === 3 ? (
+            <PaymentForm totalAmount={totalAmount} />
+          ) : null}
         </div>
         {/* details */}
         <div className="w-full lg:w-5/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8 h-max">
@@ -192,6 +191,7 @@ const CartPage = () => {
               </p>
             </div>
           </div>
+          
           {activeStep === 1 && (
             <button
               onClick={() => router.push("/cart?step=2", { scroll: false })}
