@@ -78,7 +78,10 @@ const PaymentForm = ({ setPaymentForm, totalAmount = 1597000 }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handlePaymentForm)} className="flex flex-col gap-6">
+    <form
+      onSubmit={handleSubmit(handlePaymentForm)}
+      className="flex flex-col gap-6"
+    >
       {/* Chọn phương thức thanh toán */}
       <div className="flex flex-col gap-3">
         <label className="text-sm font-medium text-gray-700">
@@ -93,8 +96,16 @@ const PaymentForm = ({ setPaymentForm, totalAmount = 1597000 }: Props) => {
             {...register("paymentMethod")}
             className="w-4 h-4"
           />
-          <Image src="/vnpay.png" alt="VNPay" width={80} height={30} className="object-contain" />
-          <span className="text-sm font-medium">VNPay (ATM/Visa/Master/QR)</span>
+          <Image
+            src="/vnpay.png"
+            alt="VNPay"
+            width={80}
+            height={30}
+            className="object-contain"
+          />
+          <span className="text-sm font-medium">
+            VNPay (ATM/Visa/Master/QR)
+          </span>
         </label>
 
         {/* Stripe Option */}
@@ -106,8 +117,29 @@ const PaymentForm = ({ setPaymentForm, totalAmount = 1597000 }: Props) => {
             className="w-4 h-4"
           />
           <div className="flex items-center gap-2">
-            <Image src="/stripe.png" alt="Stripe" width={60} height={25} className="object-contain" />
-            <Image src="/cards.png" alt="Cards" width={60} height={25} className="object-contain" />
+            <Image
+              src="/klarna.png"
+              alt="Cards"
+              width={60}
+              height={25}
+              className="object-contain"
+            />
+
+            <Image
+              src="/cards.png"
+              alt="Cards"
+              width={60}
+              height={25}
+              className="object-contain"
+            />
+
+            <Image
+              src="/stripe.png"
+              alt="Stripe"
+              width={60}
+              height={25}
+              className="object-contain"
+            />
           </div>
           <span className="text-sm font-medium">Thẻ quốc tế (Stripe)</span>
         </label>
@@ -120,7 +152,10 @@ const PaymentForm = ({ setPaymentForm, totalAmount = 1597000 }: Props) => {
       {/* VNPay Bank Selection */}
       {selectedMethod === "vnpay" && (
         <div className="flex flex-col gap-2 p-4 bg-blue-50 rounded-lg">
-          <label htmlFor="bankCode" className="text-xs text-gray-600 font-medium">
+          <label
+            htmlFor="bankCode"
+            className="text-xs text-gray-600 font-medium"
+          >
             Chọn ngân hàng (tùy chọn)
           </label>
           <select
@@ -153,7 +188,10 @@ const PaymentForm = ({ setPaymentForm, totalAmount = 1597000 }: Props) => {
         <div className="flex flex-col gap-4 p-4 bg-gray-50 rounded-lg">
           {/* Tên chủ thẻ */}
           <div className="flex flex-col gap-1">
-            <label htmlFor="cardHolder" className="text-xs text-gray-500 font-medium">
+            <label
+              htmlFor="cardHolder"
+              className="text-xs text-gray-500 font-medium"
+            >
               Tên chủ thẻ
             </label>
             <input
@@ -166,13 +204,18 @@ const PaymentForm = ({ setPaymentForm, totalAmount = 1597000 }: Props) => {
               }`}
             />
             {errors.cardHolder && (
-              <p className="text-xs text-red-500">{errors.cardHolder.message}</p>
+              <p className="text-xs text-red-500">
+                {errors.cardHolder.message}
+              </p>
             )}
           </div>
 
           {/* Số thẻ */}
           <div className="flex flex-col gap-1">
-            <label htmlFor="cardNumber" className="text-xs text-gray-500 font-medium">
+            <label
+              htmlFor="cardNumber"
+              className="text-xs text-gray-500 font-medium"
+            >
               Số thẻ
             </label>
             <input
@@ -186,14 +229,19 @@ const PaymentForm = ({ setPaymentForm, totalAmount = 1597000 }: Props) => {
               }`}
             />
             {errors.cardNumber && (
-              <p className="text-xs text-red-500">{errors.cardNumber.message}</p>
+              <p className="text-xs text-red-500">
+                {errors.cardNumber.message}
+              </p>
             )}
           </div>
 
           {/* Ngày hết hạn và CVV */}
           <div className="flex gap-4">
             <div className="flex flex-col gap-1 flex-1">
-              <label htmlFor="expirationDate" className="text-xs text-gray-500 font-medium">
+              <label
+                htmlFor="expirationDate"
+                className="text-xs text-gray-500 font-medium"
+              >
                 Ngày hết hạn
               </label>
               <input
@@ -207,12 +255,17 @@ const PaymentForm = ({ setPaymentForm, totalAmount = 1597000 }: Props) => {
                 }`}
               />
               {errors.expirationDate && (
-                <p className="text-xs text-red-500">{errors.expirationDate.message}</p>
+                <p className="text-xs text-red-500">
+                  {errors.expirationDate.message}
+                </p>
               )}
             </div>
 
             <div className="flex flex-col gap-1 flex-1">
-              <label htmlFor="cvv" className="text-xs text-gray-500 font-medium">
+              <label
+                htmlFor="cvv"
+                className="text-xs text-gray-500 font-medium"
+              >
                 Mã CVV
               </label>
               <input
