@@ -2,6 +2,7 @@
 
 import PaymentForm from "@/components/PaymentForm";
 import ShippingForm from "@/components/ShippingForm";
+import useCartStore from "@/stores/cardStore";
 import { CartItemsType } from "@/types";
 import { ArrowRight, Trash2 } from "lucide-react";
 import Image from "next/image";
@@ -14,62 +15,62 @@ const steps = [
   { id: 3, title: "Thanh toán" },
 ];
 //temporary
-const cartItems: CartItemsType = [
-  {
-    id: 1,
-    name: "Áo thun Adidas CoreFit",
-    shortDescription:
-      "Áo thun thể thao thoáng khí, phù hợp tập luyện và mặc hàng ngày.",
-    description:
-      "Áo thun Adidas CoreFit với chất liệu co giãn, thấm hút mồ hôi tốt. Thiết kế đơn giản, dễ phối đồ, phù hợp với mọi hoạt động thường ngày.",
-    price: 399000,
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["gray", "purple", "green"],
-    images: {
-      gray: "/products/1g.png",
-      purple: "/products/1p.png",
-      green: "/products/1gr.png",
-    },
-    quantity: 1,
-    selectedSize: "M",
-    selectedColor: "gray",
-  },
-  {
-    id: 2,
-    name: "Áo khoác Puma Ultra Warm Zip",
-    shortDescription: "Áo khoác giữ ấm, thiết kế thể thao năng động.",
-    description:
-      "Áo khoác Puma Ultra Warm Zip với lớp lót giữ nhiệt, khóa kéo tiện lợi. Phù hợp với thời tiết se lạnh ở miền Bắc và Đà Lạt.",
-    price: 599000,
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["gray", "green"],
-    images: {
-      gray: "/products/2g.png",
-      green: "/products/2gr.png",
-    },
-    quantity: 2,
-    selectedSize: "L",
-    selectedColor: "green",
-  },
-  {
-    id: 3,
-    name: "Áo hoodie Nike Air Essentials",
-    shortDescription: "Áo hoodie phong cách trẻ trung, giữ ấm tốt.",
-    description:
-      "Nike Air Essentials Pullover là lựa chọn lý tưởng cho mùa đông. Chất liệu dày dặn, form rộng thoải mái, phù hợp với giới trẻ Việt.",
-    price: 699000,
-    sizes: ["S", "M", "L"],
-    colors: ["green", "blue", "black"],
-    images: {
-      green: "/products/3gr.png",
-      blue: "/products/3b.png",
-      black: "/products/3bl.png",
-    },
-    quantity: 1,
-    selectedSize: "S",
-    selectedColor: "blue",
-  },
-];
+// const cartItems: CartItemsType = [
+//   {
+//     id: 1,
+//     name: "Áo thun Adidas CoreFit",
+//     shortDescription:
+//       "Áo thun thể thao thoáng khí, phù hợp tập luyện và mặc hàng ngày.",
+//     description:
+//       "Áo thun Adidas CoreFit với chất liệu co giãn, thấm hút mồ hôi tốt. Thiết kế đơn giản, dễ phối đồ, phù hợp với mọi hoạt động thường ngày.",
+//     price: 399000,
+//     sizes: ["S", "M", "L", "XL", "XXL"],
+//     colors: ["gray", "purple", "green"],
+//     images: {
+//       gray: "/products/1g.png",
+//       purple: "/products/1p.png",
+//       green: "/products/1gr.png",
+//     },
+//     quantity: 1,
+//     selectedSize: "M",
+//     selectedColor: "gray",
+//   },
+//   {
+//     id: 2,
+//     name: "Áo khoác Puma Ultra Warm Zip",
+//     shortDescription: "Áo khoác giữ ấm, thiết kế thể thao năng động.",
+//     description:
+//       "Áo khoác Puma Ultra Warm Zip với lớp lót giữ nhiệt, khóa kéo tiện lợi. Phù hợp với thời tiết se lạnh ở miền Bắc và Đà Lạt.",
+//     price: 599000,
+//     sizes: ["S", "M", "L", "XL"],
+//     colors: ["gray", "green"],
+//     images: {
+//       gray: "/products/2g.png",
+//       green: "/products/2gr.png",
+//     },
+//     quantity: 2,
+//     selectedSize: "L",
+//     selectedColor: "green",
+//   },
+//   {
+//     id: 3,
+//     name: "Áo hoodie Nike Air Essentials",
+//     shortDescription: "Áo hoodie phong cách trẻ trung, giữ ấm tốt.",
+//     description:
+//       "Nike Air Essentials Pullover là lựa chọn lý tưởng cho mùa đông. Chất liệu dày dặn, form rộng thoải mái, phù hợp với giới trẻ Việt.",
+//     price: 699000,
+//     sizes: ["S", "M", "L"],
+//     colors: ["green", "blue", "black"],
+//     images: {
+//       green: "/products/3gr.png",
+//       blue: "/products/3b.png",
+//       black: "/products/3bl.png",
+//     },
+//     quantity: 1,
+//     selectedSize: "S",
+//     selectedColor: "blue",
+//   },
+// ];
 
 const CartPage = () => {
   const searchParams = useSearchParams();
@@ -77,8 +78,10 @@ const CartPage = () => {
 
   const activeStep = parseInt(searchParams.get("step") || "1");
   
+  const {cart,removeFromCart} = useCartStore();
+
   // Tính tổng tiền
-  const totalAmount = cartItems.reduce(
+  const totalAmount = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
@@ -118,9 +121,9 @@ const CartPage = () => {
         {/* steps */}
         <div className="w-full lg:w-7/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8">
           {activeStep === 1 ? (
-            cartItems.map((item) => (
+            cart.map((item) => (
               // singel cart item
-              <div className="flex items-center justify-between" key={item.id}>
+              <div className="flex items-center justify-between" key={item.id+item.selectedSize+item.selectedColor}>
                 {/* image and details */}
                 <div className="flex gap-8">
                   {/* image */}
@@ -146,7 +149,7 @@ const CartPage = () => {
                   </div>
                 </div>
                 {/* delete button */}
-                <button className=" w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-400 flex items-center justify-center cursor-pointer">
+                <button onClick={()=>removeFromCart(item)} className=" w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-400 flex items-center justify-center cursor-pointer">
                   <Trash2 className="w-3 h-3" />
                 </button>
               </div>
@@ -164,7 +167,7 @@ const CartPage = () => {
             <div className="flex justify-between text-sm">
               <p className=" text-gray-500">Tổng cộng:</p>
               <p className="font-medium">
-                {cartItems
+                {cart
                   .reduce((acc, item) => acc + item.price * item.quantity, 0)
                   .toLocaleString("vi-VN")}{" "}
                 đ
@@ -184,7 +187,7 @@ const CartPage = () => {
             <div className="flex justify-between">
               <p className=" text-gray-800 font-semibold">Tổng thanh toán:</p>
               <p className="font-medium">
-                {cartItems
+                {cart
                   .reduce((acc, item) => acc + item.price * item.quantity, 0)
                   .toLocaleString("vi-VN")}{" "}
                 đ{" "}
