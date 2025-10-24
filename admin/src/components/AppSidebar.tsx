@@ -88,7 +88,7 @@ const AppSidebar = () => {
       <SidebarSeparator />
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Ứng dụng</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -99,7 +99,7 @@ const AppSidebar = () => {
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
-                  {item.title === "Inbox" && (
+                  {item.title === "Hộp thư" && (
                     <SidebarMenuBadge>24</SidebarMenuBadge>
                   )}
                 </SidebarMenuItem>
@@ -108,9 +108,9 @@ const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>Projects</SidebarGroupLabel>
+          <SidebarGroupLabel>Dự án</SidebarGroupLabel>
           <SidebarGroupAction>
-            <Plus /> <span className="sr-only">Add Project</span>
+            <Plus /> <span className="sr-only">Thêm dự án</span>
           </SidebarGroupAction>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -118,7 +118,7 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <Link href="/#">
                     <Projector />
-                    See All Projects
+                    Xem tất cả dự án
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -126,7 +126,7 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <Link href="/#">
                     <Plus />
-                    Add Project
+                    Thêm dự án
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -138,7 +138,7 @@ const AppSidebar = () => {
           <SidebarGroup>
             <SidebarGroupLabel asChild>
               <CollapsibleTrigger>
-                Collapsable Group
+                Nhóm thu gọn
                 <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </CollapsibleTrigger>
             </SidebarGroupLabel>
@@ -149,7 +149,7 @@ const AppSidebar = () => {
                     <SidebarMenuButton asChild>
                       <Link href="/#">
                         <Projector />
-                        See All Projects
+                        Xem tất cả dự án
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -157,7 +157,7 @@ const AppSidebar = () => {
                     <SidebarMenuButton asChild>
                       <Link href="/#">
                         <Plus />
-                        Add Project
+                        Thêm dự án
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -168,14 +168,14 @@ const AppSidebar = () => {
         </Collapsible>
         {/* NESTED */}
         <SidebarGroup>
-          <SidebarGroupLabel>Nested Items</SidebarGroupLabel>
+          <SidebarGroupLabel>Mục lồng nhau</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link href="/#">
                     <Projector />
-                    See All Projects
+                    Xem tất cả dự án
                   </Link>
                 </SidebarMenuButton>
                 <SidebarMenuSub>
@@ -183,7 +183,7 @@ const AppSidebar = () => {
                     <SidebarMenuSubButton asChild>
                       <Link href="/#">
                         <Plus />
-                        Add Project
+                        Thêm dự án
                       </Link>
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
@@ -191,7 +191,7 @@ const AppSidebar = () => {
                     <SidebarMenuSubButton asChild>
                       <Link href="/#">
                         <Plus />
-                        Add Category
+                        Thêm danh mục
                       </Link>
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
@@ -207,13 +207,13 @@ const AppSidebar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> John Doe <ChevronUp className="ml-auto" />
+                  <User2 /> Phong Nguyễn <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem>Account</DropdownMenuItem>
-                <DropdownMenuItem>Setting</DropdownMenuItem>
-                <DropdownMenuItem>Sign out</DropdownMenuItem>
+                <DropdownMenuItem>Tài khoản</DropdownMenuItem>
+                <DropdownMenuItem>Cài đặt</DropdownMenuItem>
+                <DropdownMenuItem>Đăng xuất</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
