@@ -21,7 +21,7 @@ const Homepage = () => {
         <AppAreaChart />
       </div>
       <div className="bg-primary-foreground p-4 rounded-lg">
-        <CardList title="Nội dung phổ biến" />
+        <CardList title="Sản phẩm phổ biến" />
       </div>
     </div>
   );
