@@ -29,45 +29,45 @@ import {
 import { Button } from "./ui/button";
 
 const formSchema = z.object({
-  username: z
+  fullName: z
     .string()
-    .min(2, { message: "Username must be at least 2 characters!" })
+    .min(2, { message: "Tên người dùng phải có ít nhất 2 ký tự!" })
     .max(50),
-  email: z.string().email({ message: "Invalid email address!" }),
+  email: z.string().email({ message: "Địa chỉ email không hợp lệ!" }),
   phone: z.string().min(10).max(15),
-  location: z.string().min(2),
-  role: z.enum(["admin", "user"]),
+  address: z.string().min(2),
+  city: z.string().min(2),
 });
 
 const EditUser = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "john.doe",
-      email: "john.doe@gmail.com",
-      phone: "+1 234 5678",
-      location: "New York, NY",
-      role: "admin",
+      fullName: "John Doe",
+      email: "johndoe@gmail.com",
+      phone: "+83 378 542 200",
+      address: "123 đường 45",
+      city: "Hồ Chí Minh",
     },
   });
   return (
     <SheetContent>
       <SheetHeader>
-        <SheetTitle className="mb-4">Edit User</SheetTitle>
+        <SheetTitle className="mb-4">Chỉnh sửa người dùng</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
             <form className="space-y-8">
               <FormField
                 control={form.control}
-                name="username"
+                name="fullName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel>Họ và tên</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      This is your public username.
+                      Nhập tên đầy đủ của người dùng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -83,7 +83,7 @@ const EditUser = () => {
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Only admin can see your email.
+                      Chỉ quản trị viên mới có thể xem email của bạn.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -94,12 +94,12 @@ const EditUser = () => {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone</FormLabel>
+                    <FormLabel>Số điện thoại</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Only admin can see your phone number.
+                      Chỉ quản trị viên mới có thể xem số điện thoại của bạn (tùy chọn).
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -107,15 +107,15 @@ const EditUser = () => {
               />
               <FormField
                 control={form.control}
-                name="location"
+                name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Location</FormLabel>
+                    <FormLabel>Địa chỉ</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      This is the public location.
+                      Địa chỉ người dùng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -123,29 +123,21 @@ const EditUser = () => {
               />
               <FormField
                 control={form.control}
-                name="role"
+                name="city"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Role</FormLabel>
+                    <FormLabel>Thành phố</FormLabel>
                     <FormControl>
-                      <Select>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Role" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="admin">Admin</SelectItem>
-                          <SelectItem value="user">User</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Only verified users can be admin.
+                      Thành phố của người dùng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Gửi</Button>
             </form>
           </Form>
         </SheetDescription>
