@@ -31,7 +31,7 @@ import { Button } from "./ui/button";
 const formSchema = z.object({
   fullName: z
     .string()
-    .min(2, { message: "Tên người dùng phải có ít nhất 2 ký tự!" })
+    .min(2, { message: "Tên khách hàng phải có ít nhất 2 ký tự!" })
     .max(50),
   email: z.string().email({ message: "Địa chỉ email không hợp lệ!" }),
   phone: z.string().min(10).max(15),
@@ -53,7 +53,7 @@ const EditUser = () => {
   return (
     <SheetContent>
       <SheetHeader>
-        <SheetTitle className="mb-4">Chỉnh sửa người dùng</SheetTitle>
+        <SheetTitle className="mb-4">Chỉnh sửa khách hàng</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
             <form className="space-y-8">
@@ -67,7 +67,7 @@ const EditUser = () => {
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Nhập tên đầy đủ của người dùng.
+                      Nhập tên đầy đủ của khách hàng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -115,7 +115,7 @@ const EditUser = () => {
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Địa chỉ người dùng.
+                      Địa chỉ khách hàng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -131,7 +131,7 @@ const EditUser = () => {
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Thành phố của người dùng.
+                      Thành phố của khách hàng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
