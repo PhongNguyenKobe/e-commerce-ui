@@ -45,7 +45,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "fullName",
-    header: "Người dùng",
+    header: "Khách hàng",
   },
   {
     accessorKey: "email",
