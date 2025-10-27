@@ -31,7 +31,7 @@ const SingleUserPage = () => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/users">Người dùng</BreadcrumbLink>
+            <BreadcrumbLink href="/users">Khách hàng</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -45,7 +45,7 @@ const SingleUserPage = () => {
         <div className="w-full xl:w-1/3 space-y-6">
           {/* USER BADGES CONTAINER */}
           <div className="bg-primary-foreground p-4 rounded-lg">
-            <h1 className="text-xl font-semibold">Huy hiệu người dùng</h1>
+            <h1 className="text-xl font-semibold">Huy hiệu khách hàng</h1>
             <div className="flex gap-4 mt-4">
               <HoverCard>
                 <HoverCardTrigger>
@@ -55,9 +55,9 @@ const SingleUserPage = () => {
                   />
                 </HoverCardTrigger>
                 <HoverCardContent>
-                  <h1 className="font-bold mb-2">Người dùng đã xác minh</h1>
+                  <h1 className="font-bold mb-2">Khách hàng đã xác minh</h1>
                   <p className="text-sm text-muted-foreground">
-                    Người dùng này đã được quản trị viên xác minh.
+                    Khách hàng này đã được quản trị viên xác minh.
                   </p>
                 </HoverCardContent>
               </HoverCard>
@@ -71,7 +71,7 @@ const SingleUserPage = () => {
                 <HoverCardContent>
                   <h1 className="font-bold mb-2">Quản trị viên</h1>
                   <p className="text-sm text-muted-foreground">
-                    Quản trị viên có quyền truy cập tất cả tính năng và có thể quản lý người dùng.
+                    Quản trị viên có quyền truy cập tất cả tính năng và có thể quản lý khách hàng.
                   </p>
                 </HoverCardContent>
               </HoverCard>
@@ -85,7 +85,7 @@ const SingleUserPage = () => {
                 <HoverCardContent>
                   <h1 className="font-bold mb-2">Được trao thưởng</h1>
                   <p className="text-sm text-muted-foreground">
-                    Người dùng này đã được trao thưởng vì những đóng góp của họ.
+                    Khách hàng này đã được trao thưởng vì những đóng góp của họ.
                   </p>
                 </HoverCardContent>
               </HoverCard>
@@ -99,7 +99,7 @@ const SingleUserPage = () => {
                 <HoverCardContent>
                   <h1 className="font-bold mb-2">Phổ biến</h1>
                   <p className="text-sm text-muted-foreground">
-                    Người dùng này rất phổ biến trong cộng đồng.
+                    Khách hàng này rất phổ biến trong cộng đồng.
                   </p>
                 </HoverCardContent>
               </HoverCard>
@@ -124,7 +124,7 @@ const SingleUserPage = () => {
           {/* INFORMATION CONTAINER */}
           <div className="bg-primary-foreground p-4 rounded-lg">
             <div className="flex items-center justify-between">
-              <h1 className="text-xl font-semibold">Thông tin người dùng</h1>
+              <h1 className="text-xl font-semibold">Thông tin khách hàng</h1>
               <Sheet>
                 <SheetTrigger asChild>
                   <Button>Chỉnh sửa</Button>
@@ -171,7 +171,7 @@ const SingleUserPage = () => {
           
           {/* CHART CONTAINER */}
           <div className="bg-primary-foreground p-4 rounded-lg">
-            <h1 className="text-xl font-semibold">Hoạt động người dùng</h1>
+            <h1 className="text-xl font-semibold">Hoạt động khách hàng</h1>
             <AppLineChart />
           </div>
         </div>
