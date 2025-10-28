@@ -46,6 +46,9 @@ import {
 } from "./ui/collapsible";
 import { Sheet, SheetTrigger } from "./ui/sheet";
 import EditUser from "./EditUser";
+import AddOrder from "./AddOrder";
+import AddUser from "./AddUser";
+import AddCategory from "./AddCategory";
 
 const items = [
   {
@@ -154,7 +157,7 @@ const AppSidebar = () => {
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
-                    <EditUser />
+                    <AddCategory />
                   </Sheet>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -188,7 +191,7 @@ const AppSidebar = () => {
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
-                    <EditUser />
+                    <AddUser />
                   </Sheet>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -222,7 +225,7 @@ const AppSidebar = () => {
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
-                    <EditUser />
+                    <AddOrder />
                   </Sheet>
                 </SidebarMenuButton>
               </SidebarMenuItem>
