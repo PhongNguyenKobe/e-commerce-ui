@@ -1,5 +1,8 @@
 "use client";
 
+// Mark this page as dynamic to allow useSearchParams without prerender error
+export const dynamic = "force-dynamic";
+
 import PaymentForm from "@/components/PaymentForm";
 import ShippingForm from "@/components/ShippingForm";
 import useCartStore from "@/stores/cardStore";
