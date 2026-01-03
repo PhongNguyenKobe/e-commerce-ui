@@ -29,14 +29,15 @@ export const generateMetadata = async({params}: {params: {id: string}}) => {
   }
 }
 
-const ProductPage = async ({
-  param,
+const ProductPage = ({
+  params,
   searchParams,
 }: {
-  param: Promise<{ id: string }>;
-  searchParams: Promise<{ color: string; size: string }>;
+  params: { id: string };
+  searchParams?: { color?: string; size?: string };
 }) => {
-  const { color, size } = await searchParams;
+  const color = searchParams?.color;
+  const size = searchParams?.size;
   const selectedSize = size || (product.sizes[0] as string);
   const selectedColor = color || (product.colors[0] as string);
   return (

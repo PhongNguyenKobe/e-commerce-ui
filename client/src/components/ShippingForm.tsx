@@ -48,13 +48,13 @@ const ShippingForm = ({ setShippingForm }: Props) => {
     setValue("district", "");
     setValue("ward", "");
     setWards([]);
-  }, [selectedProvince]);
+  }, [selectedProvince, provinces, setValue]);
 
   useEffect(() => {
     const district = districts.find((d) => d.name === selectedDistrict);
     setWards(district?.wards || []);
     setValue("ward", "");
-  }, [selectedDistrict]);
+  }, [selectedDistrict, districts, setValue]);
 
   const onSubmit = (data: ShippingFormInputs) => {
     if (setShippingForm) {
