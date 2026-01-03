@@ -129,8 +129,8 @@ docker run -p 3000:3000 \
 | Variable | Development | Production |
 |----------|-------------|------------|
 | `NEXT_PUBLIC_BASE_URL` | `http://localhost:3000` | `https://your-domain.com` |
-| `VNPAY_TMN_CODE` | `2B9A0YTY` (sandbox) | Your production code |
-| `VNPAY_HASH_SECRET` | Sandbox secret | Your production secret |
+| `VNPAY_TMN_CODE` | Contact VNPay support | Your production code |
+| `VNPAY_HASH_SECRET` | Contact VNPay support | Your production secret |
 | `VNPAY_URL` | Sandbox URL | `https://pay.vnpay.vn/paymentv2/vpcpay.html` |
 
 ---

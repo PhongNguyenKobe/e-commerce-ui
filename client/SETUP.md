@@ -31,10 +31,13 @@ File `.env.local` sẽ có nội dung mặc định cho sandbox:
 
 ```bash
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
-VNPAY_TMN_CODE=2B9A0YTY
-VNPAY_HASH_SECRET=A9L86EFRDQ5GSNI044WCMRT36J65TX6Z
+NEXT_PUBLIC_ADMIN_URL=http://localhost:3001
+VNPAY_TMN_CODE=<your_sandbox_tmncode>
+VNPAY_HASH_SECRET=<your_sandbox_secret>
 VNPAY_URL=https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
 ```
+
+⚠️ Để nhận sandbox credentials, vui lòng đăng ký tại https://sandbox.vnpayment.vn
 
 ## Bước 4: Chạy development server
 
