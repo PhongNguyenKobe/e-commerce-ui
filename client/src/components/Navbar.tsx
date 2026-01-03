@@ -1,7 +1,7 @@
 import Link from "next/dist/client/link";
 import Image from "next/image";
 import SearchBar from "./SearchBar";
-import { Bell, Home, ShoppingCart, Settings } from "lucide-react";
+import { Bell, Home, Settings } from "lucide-react";
 import ShoppingCartIcon from "./ShoppingCartIcon";
 
 const Navbar = () => {

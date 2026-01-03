@@ -10,8 +10,8 @@ const VNPAY_CONFIG = {
   returnUrl: (process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000") + "/payment-result",
 };
 
-function sortObject(obj: Record<string, any>) {
-  const sorted: Record<string, any> = {};
+function sortObject(obj: Record<string, string | number>) {
+  const sorted: Record<string, string | number> = {};
   const keys = Object.keys(obj).sort();
   keys.forEach((key) => {
     sorted[key] = obj[key];
