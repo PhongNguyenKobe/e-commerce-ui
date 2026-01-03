@@ -27,7 +27,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "./ui/button";
-import { Description } from "@radix-ui/react-dialog";
 import { Textarea } from "./ui/textarea";
 import { Checkbox } from "./ui/checkbox";
 import { ScrollArea } from "./ui/scroll-area";
@@ -186,7 +185,7 @@ const AddProduct = () => {
                 <FormField
                   control={form.control}
                   name="category"
-                  render={({ field }) => (
+                  render={() => (
                     <FormItem>
                       <FormLabel>Danh mục</FormLabel>
                       <Select>
