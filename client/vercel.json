@@ -1,0 +1,11 @@
+{
+  "buildCommand": "pnpm build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "env": [
+    "NEXT_PUBLIC_BASE_URL",
+    "VNPAY_TMN_CODE",
+    "VNPAY_HASH_SECRET",
+    "VNPAY_URL"
+  ]
+}
