@@ -1,4 +1,4 @@
-// @ts-nocheck
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import ProductInteraction from "@/components/ProductInteraction";
 import { ProductType } from "@/types";
 import Image from "next/image";
@@ -31,13 +31,14 @@ export const generateMetadata = async({params}: {params: {id: string}}) => {
 }
 
 type ProductPageProps = {
-  params: { id: string };
-  searchParams?: { color?: string; size?: string };
+  params: Promise<{ id: string }>;
+  searchParams?: Promise<{ color?: string; size?: string }>;
 };
 
-const ProductPage = ({ searchParams }: ProductPageProps) => {
-  const color = searchParams?.color;
-  const size = searchParams?.size;
+const ProductPage = async ({ params, searchParams }: ProductPageProps) => {
+  const { id } = await params;
+  const { color, size } = (await searchParams) || {};
+  void id; // reserved for future data fetching
   const selectedSize = size || (product.sizes[0] as string);
   const selectedColor = color || (product.colors[0] as string);
   return (
