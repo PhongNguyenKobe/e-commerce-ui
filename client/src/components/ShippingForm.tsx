@@ -23,9 +23,13 @@ const ShippingForm = ({ setShippingForm }: Props) => {
     resolver: zodResolver(shippingFormSchema),
   });
 
-  const [provinces, setProvinces] = useState<Array<{name: string; districts: Array<{name: string; wards: string[]}> }>>([]);
-  const [districts, setDistricts] = useState<Array<{name: string; wards: string[]}>>([]);
-  const [wards, setWards] = useState<string[]>([]);
+  type Ward = { code: string; name: string };
+  type District = { code: string; name: string; wards: Ward[] };
+  type Province = { code: string; name: string; districts: District[] };
+
+  const [provinces, setProvinces] = useState<Province[]>([]);
+  const [districts, setDistricts] = useState<District[]>([]);
+  const [wards, setWards] = useState<Ward[]>([]);
   const router = useRouter();
 
 
