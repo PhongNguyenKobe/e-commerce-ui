@@ -9,6 +9,7 @@ import useCartStore from "@/stores/cardStore";
 import { ArrowRight, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 // import { useState } from "react";
 
 const steps = [
@@ -74,7 +75,7 @@ const steps = [
 //   },
 // ];
 
-const CartPage = () => {
+const CartContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -211,5 +212,11 @@ const CartPage = () => {
     </div>
   );
 };
+
+const CartPage = () => (
+  <Suspense fallback={<div className="flex items-center justify-center py-12">Đang tải giỏ hàng...</div>}>
+    <CartContent />
+  </Suspense>
+);
 
 export default CartPage;
