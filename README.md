@@ -27,7 +27,7 @@ Một nền tảng thương mại điện tử hiện đại được xây dựn
 **E-Commerce UI Platform** là một giải pháp thương mại điện tử hoàn chỉnh với hai ứng dụng chính:
 
 1. **Client** - Ứng dụng khách hàng: Duyệt sản phẩm, thêm vào giỏ hàng, thanh toán bằng VNPay
-2. **Admin** - Hệ thống quản lý: Quản lý sản phẩm, đơn hàng, người dùng, danh mục, và xem các thống kê chi tiết
+2. **Admin** - Hệ thống quản lý: Quản lý sản phẩm, đơn hàng, người dùng, danh mục, và xem các thống kê chi tiết[bấm vào ⚙️ ngay header để vào dashboard]
 
 Dự án được phát triển bằng những công nghệ hiện đại nhất của React và Next.js, cung cấp hiệu suất cao, UX tuyệt vời và dễ bảo trì.
 
